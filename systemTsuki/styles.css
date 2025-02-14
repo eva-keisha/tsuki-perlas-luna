@@ -1,0 +1,110 @@
+
+:root {
+    --color-pink: #F2AAAE;
+    --color-purple: #D0AAD1;
+    --color-yellow: #FFE7C1;
+    --color-blue: #D0E9E9;
+    --color-orange: #F4C09D;
+    --color-bg: #FFF;
+    --color-text: #333;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: var(--color-pink);
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    color: white;
+}
+
+.form-section {
+    background-color: var(--color-yellow);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-section h2 {
+    margin-top: 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--color-blue);
+    border-radius: 5px;
+}
+
+.form-group button {
+    background-color: var(--color-orange);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-group button:hover {
+    background-color: var(--color-pink);
+}
+
+.table-section {
+    margin-top: 20px;
+}
+
+.table-section table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table-section th, .table-section td {
+    border: 1px solid var(--color-blue);
+    padding: 10px;
+    text-align: left;
+}
+
+.table-section th {
+    background-color: var(--color-purple);
+    color: white;
+}
+
+.table-section tr:nth-child(even) {
+    background-color: var(--color-yellow);
+}
+
+.table-section tr:hover {
+    background-color: var(--color-orange);
+    color: white;
+}

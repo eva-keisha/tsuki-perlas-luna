@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <title>Gestión de Productos</title>
+   
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Gestión de Productos</h1>
+        </header>
+
+        <section class="form-section">
+            <h2>Agregar o Editar Producto</h2>
+            <form id="productForm">
+                <div class="form-group">
+                    <label for="nombreProducto">Nombre del Producto</label>
+                    <input type="text" id="nombreProducto" name="nombreProducto" placeholder="Escribe el nombre del producto">
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <textarea id="descripcion" name="descripcion" placeholder="Escribe una descripción del producto"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="precio">Precio</label>
+                    <input type="number" id="precio" name="precio" placeholder="Escribe el precio">
+                </div>
+                <div class="form-group">
+                    <label for="stock">Stock</label>
+                    <input type="number" id="stock" name="stock" placeholder="Escribe la cantidad en stock">
+                </div>
+                <div class="form-group">
+                    <label for="categoria">Categoría</label>
+                    <input type="text" id="categoria" name="categoria" placeholder="Escribe la categoría">
+                </div>
+                <div class="form-group">
+                    <button type="submit">Guardar Producto</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="table-section">
+            <h2>Lista de Productos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Categoría</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="productTableBody">
+                    <!-- Aquí se llenarán los productos dinámicamente -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+</body>
+</html>
