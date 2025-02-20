@@ -1,0 +1,58 @@
+.container {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+.button-container {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.btn-register {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-register:hover {
+    background-color: #218838;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.edit-btn, .delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 0 5px;
+}
+
+.edit-btn {
+    color: #007bff;
+}
+
+.delete-btn {
+    color: #dc3545;
+}
+
+.edit-btn:hover {
+    color: #0056b3;
+}
+
+.delete-btn:hover {
+    color: #a71d2a;
+}

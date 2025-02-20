@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles3.css">
+    <title>Editar Producto</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Editar Producto</h1>
+        </header>
+        
+        <form id="editProductForm" enctype="multipart/form-data">
+            <input type="hidden" id="productId" name="id_producto">
+            
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre_producto" required>
+            
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" required></textarea>
+            
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" name="precio" step="0.01" required>
+            
+            <label for="stock">Stock:</label>
+            <input type="number" id="stock" name="stock" required>
+            
+            <label for="categoria">Categoría:</label>
+            <input type="text" id="categoria" name="categoria" required>
+            
+            <label for="imagen">Imagen:</label>
+            <input type="file" id="imagen" name="imagen" accept="image/*">
+            <img id="previewImagen" src="" alt="Imagen del producto" style="max-width: 100px; display: none;">
+            
+            
+            <button type="submit">Guardar Cambios</button>
+        </form>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get("id");
+    const form = document.getElementById("editProductForm");
+    const inputImagen = document.getElementById("imagen");
+    const previewImagen = document.getElementById("previewImagen");
+
+    if (productId) {
+        fetch(`obtener_producto2.php?id=${encodeURIComponent(productId)}`)
+            .then(response => response.json())
+            .then(product => {
+                document.getElementById("productId").value = product.id_producto;
+                document.getElementById("nombre").value = product.nombre_producto;
+                document.getElementById("descripcion").value = product.descripcion;
+                document.getElementById("precio").value = product.precio;
+                document.getElementById("stock").value = product.stock;
+                document.getElementById("categoria").value = product.categoria;
+                
+                if (product.imagen) {
+                    previewImagen.src = product.imagen;
+                    previewImagen.style.display = "block";
+                }
+            })
+            .catch(error => console.error("Error al obtener el producto:", error));
+    }
+
+    // Actualizar previsualización cuando se seleccione una nueva imagen
+    inputImagen.addEventListener("change", function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                previewImagen.src = e.target.result;
+                previewImagen.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+
+    fetch("actualizar_producto.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Producto actualizado correctamente");
+            window.location.href = "modulo_producto.html";  // Redirigir aquí
+        } else {
+            alert("Error al actualizar el producto: " + data.message);
+        }
+    })
+    .catch(error => console.error("Error al actualizar el producto:", error));
+});
+
+
+});
+
+    </script>
+</body>
+</html>
+

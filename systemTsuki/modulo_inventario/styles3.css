@@ -1,4 +1,3 @@
-
 :root {
     --color-pink: #F2AAAE;
     --color-purple: #D0AAD1;
@@ -7,8 +6,6 @@
     --color-orange: #F4C09D;
     --color-bg: #FFF;
     --color-text: #333;
-
-
 }
 
 body {
@@ -20,14 +17,17 @@ body {
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 800px;
+    margin: 20px auto;
     padding: 20px;
+    background-color: var(--color-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 header {
-    background-color:#8C523B;
-    padding: 20px;
+    background-color: #8C523B;
+    padding: 15px;
     text-align: center;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -38,36 +38,28 @@ header h1 {
     color: white;
 }
 
-.form-section {
+form {
     background-color: var(--color-yellow);
     padding: 20px;
-    margin-top: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.form-section h2 {
-    margin-top: 0;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
+label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-.form-group input, .form-group textarea {
+input, textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid var(--color-blue);
     border-radius: 5px;
+    margin-bottom: 15px;
 }
 
-.form-group button {
+button {
     background-color: var(--color-orange);
     color: white;
     border: none;
@@ -77,36 +69,6 @@ header h1 {
     font-size: 16px;
 }
 
-.form-group button:hover {
+button:hover {
     background-color: var(--color-pink);
-}
-
-.table-section {
-    margin-top: 20px;
-}
-
-.table-section table {
-    width: 100%;
-    border-collapse: collapse;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.table-section th, .table-section td {
-    border: 1px solid var(--color-blue);
-    padding: 10px;
-    text-align: left;
-}
-
-.table-section th {
-    background-color: var(--color-purple);
-    color: white;
-}
-
-.table-section tr:nth-child(even) {
-    background-color: var(--color-yellow);
-}
-
-.table-section tr:hover {
-    background-color: var(--color-orange);
-    color: white;
 }
