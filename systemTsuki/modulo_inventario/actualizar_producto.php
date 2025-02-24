@@ -1,5 +1,5 @@
 <?php
-require 'conexion.php';  // Asegúrate de que tu conexión a la base de datos está bien configurada
+require '../conexion.php';  // Asegúrate de que tu conexión a la base de datos está bien configurada
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_producto = $_POST['id_producto'];

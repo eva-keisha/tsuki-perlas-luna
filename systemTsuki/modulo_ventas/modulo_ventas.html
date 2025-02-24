@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="styles2.css">
+    <script defer src="script.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Gestión de Productos</title>
+</head>
+<body>
+
+
+
+    <div class="container">
+   
+        
+
+        <header>
+            <h1>Gestión de Productos</h1>
+        </header>
+
+        <div class="button-container">
+            <a href="registroproducto.html" class="btn-register">Registrar Producto</a>
+        </div>
+  
+        
+  <div class="flex h-screen">   
+
+    <div class="flex h-screen">
+        <!-- Sidebar con margen derecho -->
+        <div class="sidebar bg-blue-800 text-white w-64 p-4 mr-8">
+            <h1 class="text-2xl font-bold mb-8">Tsuki Joyas</h1>
+            <nav>
+                <ul class="space-y-4">
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-blue-700">Inicio</a></li>
+                    <li><a href="modulo_producto.html" class="block py-2 px-4 rounded hover:bg-blue-700">Inventario</a></li>
+                    <li><a href="modulo_ventas.html" class="block py-2 px-4 rounded hover:bg-blue-700">Ventas</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-blue-700">Clientes</a></li>
+                    <li><a href="modulo_catalogo.html" class="block py-2 px-4 rounded hover:bg-blue-700">Catálogo</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-blue-700">Usuarios</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-blue-700">Configuración</a></li>
+                </ul>
+            </nav>
+        </div>
+    
+        <!-- Sección de la tabla, centrada y con espacio -->
+        <section class="table-section flex-grow mx-auto w-3/4">
+            <h2 class="text-xl font-semibold mb-4">Lista de Productos</h2>
+            <table class="w-full border-collapse border border-gray-300">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="border p-2">ID</th>
+                        <th class="border p-2">ID_Cliente</th>
+                        <th class="border p-2">Total</th>
+                        <th class="border p-2">Metodo de pago</th>
+                        <th class="border p-2">Fecha de venta</th>
+                       
+                        <th class="border p-2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="productTableBody">
+                    <!-- Aquí se llenarán los productos dinámicamente -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+    
+    
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const productTableBody = document.getElementById("productTableBody");
+    
+                function fetchProducts() {
+                    fetch("obtener_productos.php")
+                        .then(response => response.json())
+                        .then(products => {
+                            productTableBody.innerHTML = "";
+                            products.forEach(product => {
+                                const row = document.createElement("tr");
+                                row.innerHTML = `
+                                    <td>${product.id_producto}</td>
+                                    <td>${product.nombre_producto}</td>
+                                    <td>${product.descripcion}</td>
+                                    <td>$${product.precio}</td>
+                                    <td>${product.stock}</td>
+                                    <td>${product.categoria}</td>
+                                    <td>
+                                        ${product.imagen ? `<img src="${product.imagen}" width="50">` : ""}
+                                    </td>
+                                    <td>
+                                        <a href="editar_producto.html?id=${encodeURIComponent(product.id_producto)}">
+                                            <img src="editar.png" alt="Editar" width="30" height="30">
+                                        </a>
+                                        <a href="#" onclick="eliminarProducto(${product.id_producto}); return false;">
+                                            <img src="eliminar.png" alt="Eliminar" width="30" height="30">
+                                        </a>
+                                    </td>
+                                `;
+                                productTableBody.appendChild(row);
+                            });
+                        })
+                        .catch(error => console.error("Error al obtener productos:", error));
+                }
+    
+                fetchProducts();
+            });
+    
+            function eliminarProducto(id) {
+                if (confirm("¿Estás seguro de que deseas eliminar este producto?")) {
+                    fetch("eliminar_producto.php", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        body: `id_producto=${encodeURIComponent(id)}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert("Producto eliminado correctamente.");
+                            location.reload();
+                        } else {
+                            alert("Error: " + data.message);
+                        }
+                    })
+                    .catch(error => console.error("Error al eliminar el producto:", error));
+                }
+            }
+        </script>
+    
+        
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+        </div>
+
+      
+</body>
+</html>

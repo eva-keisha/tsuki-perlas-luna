@@ -1,0 +1,193 @@
+:root {
+    --color-pink: #F2AAAE;
+    --color-purple: #D0AAD1;
+    --color-yellow: #FFE7C1;
+    --color-blue: #D0E9E9;
+    --color-orange: #F4C09D;
+    --color-bg: #FFF;
+    --color-text: #333;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #E9CF99;
+    color: var(--color-text);
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: var(--color-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    background-color: #8C523B;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    color: white;
+    font-size: 20px;
+}
+
+form {
+    background-color: var(--color-yellow);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--color-text);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--color-blue);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: #fff;
+}
+
+button {
+    background-color: var(--color-orange);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: var(--color-pink);
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.cancel-btn {
+    background-color: var(--color-purple);
+    padding: 10px 20px;
+    margin-left: 10px;
+}
+
+.cancel-btn:hover {
+    background-color: var(--color-blue);
+}
+:root {
+    --color-pink: #F2AAAE;
+    --color-purple: #D0AAD1;
+    --color-yellow: #FFE7C1;
+    --color-blue: #D0E9E9;
+    --color-orange: #F4C09D;
+    --color-bg: #FFF;
+    --color-text: #333;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #E9CF99;
+    color: var(--color-text);
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: var(--color-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    background-color: #8C523B;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    color: white;
+    font-size: 20px;
+}
+
+form {
+    background-color: var(--color-yellow);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--color-text);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--color-blue);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: #fff;
+}
+
+button {
+    background-color: var(--color-orange);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: var(--color-pink);
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.cancel-btn {
+    background-color: var(--color-purple);
+    padding: 10px 20px;
+    margin-left: 10px;
+}
+
+.cancel-btn:hover {
+    background-color: var(--color-blue);
+}
+
+.success-message {
+    text-align: center;
+    font-weight: bold;
+    color: green;
+    margin-top: 10px;
+}

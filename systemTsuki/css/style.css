@@ -1,0 +1,82 @@
+/* Estilos mejorados para el dashboard */
+
+/* Sidebar */
+.sidebar {
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #F2AAAE, #D0AAD1);
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+}
+.sidebar h1 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.sidebar a {
+    transition: all 0.3s ease;
+}
+.sidebar a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+/* Main content */
+.content {
+    padding: 2rem;
+}
+
+/* Header */
+header {
+    background: white;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+input[type="text"] {
+    border: 2px solid #333;
+    outline: none;
+    transition: all 0.3s ease;
+}
+input[type="text"]:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
+}
+
+/* Botón de cerrar sesión */
+button {
+    transition: all 0.3s ease;
+}
+button:hover {
+    background: #2563eb;
+    transform: scale(1.05);
+}
+
+/* Cards */
+.card {
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.card h3 {
+    color: #1e3a8a;
+}
+.card p {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+/* Estadísticas */
+#chartContainer {
+    border-radius: 1rem;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+#chartContainer:hover {
+    transform: translateY(-5px);
+}

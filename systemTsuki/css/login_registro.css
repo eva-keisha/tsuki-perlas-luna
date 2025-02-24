@@ -1,0 +1,73 @@
+/* Estilos para Login y Registro */
+
+:root {
+    --color-pink: #F2AAAE;
+    --color-purple: #D0AAD1;
+    --color-yellow: #FFE7C1;
+    --color-blue: #D0E9E9;
+    --color-orange: #F4C09D;
+    --color-bg: #FFF;
+    --color-text: #333;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: var(--color-blue);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+h2 {
+    color: var(--color-purple);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--color-pink);
+    border-radius: 5px;
+}
+
+button {
+    background: var(--color-orange);
+    color: var(--color-text);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+button:hover {
+    background: var(--color-yellow);
+}
+
+.link {
+    display: block;
+    margin-top: 10px;
+    color: var(--color-purple);
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}

@@ -1,5 +1,5 @@
 <?php
-include("conexion.php"); // Asegúrate de que el archivo está en la ubicación correcta
+include("../conexion.php"); // Asegúrate de que el archivo está en la ubicación correcta
 
 header("Content-Type: application/json");
 

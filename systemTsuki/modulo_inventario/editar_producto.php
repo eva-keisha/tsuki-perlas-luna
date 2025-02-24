@@ -3,7 +3,7 @@ header("Content-Type: application/json");
 $response = ["success" => false];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    include "conexion.php"; // Archivo para la conexión a la base de datos
+    include "../conexion.php"; // Archivo para la conexión a la base de datos
 
     $id = $_POST["productId"] ?? null;
     $nombre = $_POST["nombre"] ?? "";

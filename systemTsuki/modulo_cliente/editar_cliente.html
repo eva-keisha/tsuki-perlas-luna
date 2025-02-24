@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Cliente</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="p-6">
+    <h1 class="text-2xl font-bold mb-4">Editar Cliente</h1>
+    <form id="editForm" class="space-y-4">
+        <input type="hidden" id="id_cliente" name="id_cliente">
+        <div>
+            <label>Nombre:</label>
+            <input type="text" id="nombre_cliente" name="nombre_cliente" class="border p-2 w-full">
+        </div>
+        <div>
+            <label>Correo:</label>
+            <input type="email" id="correo" name="correo" class="border p-2 w-full">
+        </div>
+        <div>
+            <label>Teléfono:</label>
+            <input type="text" id="telefono" name="telefono" class="border p-2 w-full">
+        </div>
+        <div>
+            <label>Dirección:</label>
+            <input type="text" id="direccion" name="direccion" class="border p-2 w-full">
+        </div>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Guardar Cambios</button>
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id_cliente = urlParams.get("id");
+
+            fetch(`obtener_clientes.php`)
+                .then(response => response.json())
+                .then(clientes => {
+                    const cliente = clientes.find(c => c.id_cliente == id_cliente);
+                    if (cliente) {
+                        document.getElementById("id_cliente").value = cliente.id_cliente;
+                        document.getElementById("nombre_cliente").value = cliente.nombre_cliente;
+                        document.getElementById("correo").value = cliente.correo;
+                        document.getElementById("telefono").value = cliente.telefono;
+                        document.getElementById("direccion").value = cliente.direccion;
+                    }
+                });
+
+            document.getElementById("editForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                const formData = new FormData(this);
+
+                fetch("editar_cliente.php", {
+                    method: "POST",
+                    body: new URLSearchParams(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Cliente actualizado correctamente.");
+                        window.location.href = "modulo_cliente.html";
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+            });
+        });
+    </script>
+</body>
+</html>
