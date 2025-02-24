@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario</title>
+    <link rel="stylesheet" href="../modulo_cliente/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="p-6">
+    <h1 class="text-2xl font-bold mb-4">Editar Usuario</h1>
+    <form id="editForm" class="space-y-4">
+        <input type="hidden" id="id_usuario" name="id_usuario">
+        <div>
+            <label>Nombre de Usuario:</label>
+            <input type="text" id="nombre_usuario" name="nombre_usuario" class="border p-2 w-full">
+        </div>
+        <div>
+            <label>Correo:</label>
+            <input type="email" id="correo" name="correo" class="border p-2 w-full">
+        </div>
+        <div>
+            <label>Contraseña:</label>
+            <input type="password" id="contraseña" name="contraseña" class="border p-2 w-full">
+        </div>
+        <div>
+            <label>Rol:</label>
+            <input type="text" id="rol" name="rol" class="border p-2 w-full">
+        </div>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Guardar Cambios</button>
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id_usuario = urlParams.get("id");
+
+            fetch(`obtener_usuarios.php`)
+                .then(response => response.json())
+                .then(usuarios => {
+                    const usuario = usuarios.find(u => u.id_usuario == id_usuario);
+                    if (usuario) {
+                        document.getElementById("id_usuario").value = usuario.id_usuario;
+                        document.getElementById("nombre_usuario").value = usuario.nombre_usuario;
+                        document.getElementById("correo").value = usuario.correo;
+                        document.getElementById("contraseña").value = usuario.contraseña;
+                        document.getElementById("rol").value = usuario.rol;
+                    }
+                });
+
+            document.getElementById("editForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                const formData = new FormData(this);
+
+                fetch("editar_usuarios.php", {
+                    method: "POST",
+                    body: new URLSearchParams(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Usuario actualizado correctamente.");
+                        window.location.href = "modulo_usuario.html";
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+            });
+        });
+    </script>
+</body>
+</html>
