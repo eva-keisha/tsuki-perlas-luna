@@ -1,0 +1,172 @@
+:root {
+    --color-pink: #F2AAAE;
+    --color-purple: #D0AAD1;
+    --color-yellow: #FFE7C1;
+    --color-blue: #D0E9E9;
+    --color-orange: #F4C09D;
+    --color-bg: #FFF;
+    --color-text: #333;
+}
+
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, var(--color-yellow), var(--color-orange));
+    color: var(--color-text);
+    margin: 0;
+    padding: 0;
+}
+
+/* Sidebar */
+#sidebar {
+    background: linear-gradient(to bottom, var(--color-purple), var(--color-pink));
+    color: white;
+    width: 250px;
+    height: 100vh;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+}
+
+#sidebar h1 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar nav ul li {
+    margin-bottom: 10px;
+}
+
+#sidebar nav ul li a {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+#sidebar nav ul li a:hover {
+    background: var(--color-yellow);
+    color: var(--color-text);
+}
+
+/* Contenedor principal */
+.flex-1 {
+    margin-left: 270px;
+    padding: 20px;
+}
+
+/* Título */
+h2 {
+    color: var(--color-purple);
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Buscador y botón de registro */
+.flex.justify-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input#search {
+    border: 2px solid var(--color-purple);
+    padding: 10px;
+    border-radius: 5px;
+    width: 40%;
+    transition: 0.3s;
+}
+
+input#search:focus {
+    border-color: var(--color-pink);
+    outline: none;
+}
+
+a.bg-blue-500 {
+    background: var(--color-pink);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+a.bg-blue-500:hover {
+    background: var(--color-purple);
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    border: 1px solid var(--color-orange);
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: var(--color-purple);
+    color: white;
+    font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+    background: var(--color-blue);
+}
+
+tbody tr:hover {
+    background: var(--color-yellow);
+    color: var(--color-text);
+}
+
+/* Paginación */
+.flex.justify-center {
+    margin-top: 20px;
+}
+
+button {
+    background: var(--color-pink);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: var(--color-purple);
+}
+
+/* Iconos de acción */
+td img {
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+td img:hover {
+    transform: scale(1.1);
+}

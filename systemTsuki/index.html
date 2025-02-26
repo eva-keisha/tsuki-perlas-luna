@@ -1,101 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Dashboard Joyería</title>
+    <title>Gestión de Usuarios</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        /* Estilos personalizados */
-        .sidebar {
-            min-height: 100vh;
-        }
-        .content {
-            padding: 2rem;
-        }
-        .card {
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+    <link rel="stylesheet" href="css/modulos.css">
+    <script defer src="script.js"></script>
 </head>
 <body class="bg-gray-100">
     <div class="flex h-screen">
         <!-- Sidebar -->
-        <div class="sidebar bg-blue-800 text-white w-64 p-4">
-            <h1 class="text-2xl font-bold mb-8">Tsuki Joyas</h1>
+        <div id="sidebar" class="w-64 bg-gray-800 text-white p-5">
+            <h1 class="text-2xl font-bold mb-6">Dashboard</h1>
             <nav>
                 <ul class="space-y-4">
-                    <li><a href="index.html" class="block py-2 px-4 rounded hover:bg-blue-700">Inicio</a></li>
-                    <li><a href="modulo_inventario/modulo_producto.html" class="block py-2 px-4 rounded hover:bg-blue-700">Inventario</a></li>
-                    <li><a href="modulo_ventas/modulo_ventas.html" class="block py-2 px-4 rounded hover:bg-blue-700">Ventas</a></li>
-                    <li><a href="modulo_cliente/modulo_cliente.html" class="block py-2 px-4 rounded hover:bg-blue-700">Clientes</a></li>
-                    <li><a href="modulo_catalogo/modulo_catalogo.html" class="block py-2 px-4 rounded hover:bg-blue-700">Catálogo</a></li>
-                    <li><a href="modulo_usuarios/modulo_usuario.html" class="block py-2 px-4 rounded hover:bg-blue-700">Usuarios</a></li>
-                    <li><a href="login.html" class="block py-2 px-4 rounded hover:bg-blue-700">Configuración</a></li>
+                    <li><a href="index.html" class="block py-2 px-4 rounded hover:bg-gray-700">Inicio</a></li>
+                    <li><a href="modulo_inventario/modulo_producto.html" id="inventario" class="block py-2 px-4 rounded hover:bg-gray-700">Inventario</a></li>
+                    <li><a href="modulo_ventas/modulo_ventas.html" id="ventas" class="block py-2 px-4 rounded hover:bg-gray-700">Ventas</a></li>
+                    <li><a href="modulo_usuarios/modulo_usuario.html" id="usuarios" class="block py-2 px-4 rounded hover:bg-gray-700">Usuarios</a></li>
+                    <li><a href="modulo_cliente/modulo_cliente.html" id="clientes" class="block py-2 px-4 rounded hover:bg-gray-700">Clientes</a></li>
                 </ul>
             </nav>
         </div>
-
-        <!-- Main Content -->
-        <div class="flex-1 content">
-            <header class="flex items-center justify-between mb-6">
-                <h2 class="text-3xl font-bold">Dashboard</h2>
-                <div class="flex items-center space-x-4">
-                    <input type="text" placeholder="Buscar..." class="px-4 py-2 border rounded" />
-                    <button class="bg-blue-800 text-white px-4 py-2 rounded">Cerrar sesión</button>
-                </div>
-            </header>
-
-            <!-- Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="card bg-white p-4">
-                    <h3 class="text-xl font-bold">Productos</h3>
-                    <p class="text-2xl font-semibold">120</p>
-                </div>
-                <div class="card bg-white p-4">
-                    <h3 class="text-xl font-bold">Ventas</h3>
-                    <p class="text-2xl font-semibold">$25,000</p>
-                </div>
-                <div class="card bg-white p-4">
-                    <h3 class="text-xl font-bold">Clientes</h3>
-                    <p class="text-2xl font-semibold">85</p>
-                </div>
-                <div class="card bg-white p-4">
-                    <h3 class="text-xl font-bold">Categorías</h3>
-                    <p class="text-2xl font-semibold">10</p>
-                </div>
-            </div>
-
-            <!-- Charts Section -->
-            <div class="mt-8">
-                <h3 class="text-2xl font-bold mb-4">Estadísticas</h3>
-                <div id="chartContainer" class="bg-white p-6 rounded shadow">
-                    <!-- Aquí se renderizarán los gráficos con JS -->
-                </div>
-            </div>
-        </div>
+        
+    
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-   <!--<script>
-        // Ejemplo de gráfico con Chart.js
-        const ctx = document.getElementById('chartContainer').appendChild(document.createElement('canvas'));
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Enero', 'Febrero', 'Marzo', 'Abril'],
-                datasets: [{
-                    label: 'Ventas',
-                    data: [5000, 10000, 7500, 12500],
-                    backgroundColor: 'rgba(59, 130, 246, 0.7)',
-                }]
-            },
-            options: {
-                responsive: true,
-            }
-        });
-    </script>-->
+ 
 </body>
 </html>

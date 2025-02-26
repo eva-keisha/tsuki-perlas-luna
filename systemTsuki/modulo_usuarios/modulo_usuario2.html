@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../modulo_inventario/styles.css">
+    <link rel="stylesheet" href="../modulo_inventario/styles2.css">
+    <script defer src="script.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Gestión de Usuarios</title>
+</head>
+<body>
+
+
+
+    <div class="container">
+   
+        
+
+        <header>
+            <h1>Gestión de Usuarios</h1>
+        </header>
+
+        <div class="button-container">
+            <a href="registro_usuarios.html" class="btn-register">Registrar Producto</a>
+        </div>
+  
+        
+  <div class="flex h-screen">   
+
+    <div class="flex h-screen">
+        <!-- Sidebar con margen derecho -->
+        <div class="sidebar bg-blue-800 text-white w-64 p-4 mr-8">
+            <h1 class="text-2xl font-bold mb-8">Tsuki Joyas</h1>
+            <nav>
+                <ul class="space-y-4">
+                    <li><a href="../index.html" class="block py-2 px-4 rounded hover:bg-blue-700">Inicio</a></li>
+                    <li><a href="../modulo_inventario/modulo_producto.html" class="block py-2 px-4 rounded hover:bg-blue-700">Inventario</a></li>
+                    <li><a href="../modulo_ventas/modulo_ventas.html" class="block py-2 px-4 rounded hover:bg-blue-700">Ventas</a></li>
+                    <li><a href="../modulo_cliente/modulo_cliente.html" class="block py-2 px-4 rounded hover:bg-blue-700">Clientes</a></li>
+                    <li><a href="../modulo_catalogo/modulo_catalogo.html" class="block py-2 px-4 rounded hover:bg-blue-700">Catálogo</a></li>
+                    <li><a href="modulo_usuario.html" class="block py-2 px-4 rounded hover:bg-blue-700">Usuarios</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-blue-700">Configuración</a></li>
+                </ul>
+            </nav>
+        </div>
+    
+        <!-- Sección de la tabla, centrada y con espacio -->
+        <section class="table-section flex-grow mx-auto w-3/4">
+            <h2 class="text-xl font-semibold mb-4">Lista de Usuarios</h2>
+            <table class="w-full border-collapse border border-gray-300">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="border p-2">ID</th>
+                        <th class="border p-2">Nombre de Usuario</th>
+                        <th class="border p-2">Correo</th>
+                        <th class="border p-2">Contraseña</th>
+                        <th class="border p-2">Rol</th>
+                      
+                        <th class="border p-2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="usuarioTableBody">
+                    <!-- Aquí se llenarán los productos dinámicamente -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+    
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const usuarioTableBody = document.getElementById("usuarioTableBody");
+        
+            function fetchUsuarios() {
+                fetch("obtener_usuarios.php")
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Error en la respuesta del servidor");
+                        }
+                        return response.json();
+                    })
+                    .then(usuarios => {
+                        usuarioTableBody.innerHTML = ""; 
+        
+                        usuarios.forEach(usuario => {
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
+                                <td class="border p-2">${usuario.id_usuario}</td>
+                                <td class="border p-2">${usuario.nombre_usuario}</td>
+                                <td class="border p-2">${usuario.correo}</td>
+                                <td class="border p-2">******</td> <!-- FIX: No mostrar la contraseña real -->
+                                <td class="border p-2">${usuario.rol}</td>
+                                <td class="border p-2">
+                                    <a href="editar_usuarios.html?id=${encodeURIComponent(usuario.id_usuario)}">
+                                        <img src="../imagenes/editar.png" alt="Editar" width="30" height="30">
+                                    </a>
+                                    <a href="#" onclick="eliminarUsuario(${usuario.id_usuario}); return false;">
+                                        <img src="../imagenes/eliminar.png" alt="Eliminar" width="30" height="30">
+                                    </a>
+                                </td>
+                            `;
+                            usuarioTableBody.appendChild(row);
+                        });
+                    })
+                    .catch(error => console.error("Error al obtener usuarios:", error)); // FIX: Mensaje de error más claro
+            }
+        
+            fetchUsuarios();
+        });
+        
+        function eliminarUsuario(id) {
+            if (confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
+                fetch("eliminar_usuario.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: `id_usuario=${encodeURIComponent(id)}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Usuario eliminado correctamente.");
+                        location.reload();
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                })
+                .catch(error => console.error("Error al eliminar el usuario:", error));
+            }
+        }
+        </script>
+        
+    
+        
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+        </div>
+
+      
+</body>
+</html>

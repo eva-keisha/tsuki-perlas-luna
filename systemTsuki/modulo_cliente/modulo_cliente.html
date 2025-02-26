@@ -3,54 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../modulo_inventario/styles.css">
-    <link rel="stylesheet" href="../modulo_inventario/styles2.css">
-
-   
-    <script defer src="script.js"></script>
-
+    <title>Gestión de Usuarios</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <title>Gestión de Clientes</title>
+    <link rel="stylesheet" href="../css/modulos.css">
+    <script defer src="script.js"></script>
 </head>
-<body>
-
-
-
-    <div class="container">
-
-        <header>
-            <h1>Gestión de Clientes</h1>
-        </header>
-
-        <div class="button-container">
-            <!--cambiar archivo-->
-            <a href="registrar_cliente.html" class="btn-register">Registrar Cliente</a>
-        </div>
-  
-        
-  <div class="flex h-screen">   
-
+<body class="bg-gray-100">
     <div class="flex h-screen">
-        <!-- Sidebar con margen derecho -->
-        <div class="sidebar bg-blue-800 text-white w-64 p-4 mr-8">
-            <h1 class="text-2xl font-bold mb-8">Tsuki Joyas</h1>
+        <!-- Sidebar -->
+        <div id="sidebar" class="w-64 bg-gray-800 text-white p-5">
+            <h1 class="text-2xl font-bold mb-6">Dashboard</h1>
             <nav>
                 <ul class="space-y-4">
-                    <li><a href="../index.html" class="block py-2 px-4 rounded hover:bg-blue-700">Inicio</a></li>
-                    <li><a href="../modulo_inventario/modulo_producto.html" class="block py-2 px-4 rounded hover:bg-blue-700">Inventario</a></li>
-                    <li><a href="../modulo_ventas/modulo_ventas.html" class="block py-2 px-4 rounded hover:bg-blue-700">Ventas</a></li>
-                    <li><a href="modulo_cliente.html" class="block py-2 px-4 rounded hover:bg-blue-700">Clientes</a></li>
-                    <li><a href="../modulo_catalogo/modulo_catalogo.html" class="block py-2 px-4 rounded hover:bg-blue-700">Catálogo</a></li>
-                    <li><a href="../modulo_usuarios/modulo_usuario.html"class="block py-2 px-4 rounded hover:bg-blue-700">Usuarios</a></li>
-                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-blue-700">Configuración</a></li>
+                    <li><a href="../index.html" class="block py-2 px-4 rounded hover:bg-gray-700">Inicio</a></li>
+                    <li><a href="../modulo_inventario/modulo_producto.html" id="inventario" class="block py-2 px-4 rounded hover:bg-gray-700">Inventario</a></li>
+                    <li><a href="#" id="ventas" class="block py-2 px-4 rounded hover:bg-gray-700">Ventas</a></li>
+                    <li><a href="../modulo_usuarios/modulo_usuario.html" id="usuarios" class="block py-2 px-4 rounded hover:bg-gray-700">Usuarios</a></li>
+                    <li><a href="modulo_cliente.html" id="clientes" class="block py-2 px-4 rounded hover:bg-gray-700">Clientes</a></li>
                 </ul>
             </nav>
         </div>
-    
-        <!-- Sección de la tabla, centrada y con espacio -->
-        <section class="table-section flex-grow mx-auto w-3/4">
-            <h2 class="text-xl font-semibold mb-4">Lista de Clientes</h2>
+        
+        <!-- Contenido principal -->
+        <div class="flex-1 p-8">
+            <h2 class="text-2xl font-semibold mb-4">Lista de Cliente</h2>
+            <div class="flex justify-between mb-4">
+                <input type="text" id="search" placeholder="Buscar..." class="border p-2 rounded w-1/3">
+                <a href="registrar_cliente.html" class="bg-blue-500 text-white px-4 py-2 rounded">Registrar cliente</a>
+            </div>
+            
             <table class="w-full border-collapse border border-gray-300">
                 <thead>
                     <tr class="bg-gray-200">
@@ -63,51 +44,79 @@
                         <th class="border p-2">Acciones</th>
                     </tr>
                 </thead>
-                <tbody id="productTableBody">
-                    <!-- Aquí se llenarán los productos dinámicamente -->
-                </tbody>
+                <tbody id="clienteTableBody"></tbody>
             </table>
-        </section>
+            
+            <div class="flex justify-center mt-4">
+                <button id="prevPage" class="px-4 py-2 bg-gray-300 rounded mr-2">&lt;</button>
+                <span id="pageNumber" class="px-4 py-2">1</span>
+                <button id="nextPage" class="px-4 py-2 bg-gray-300 rounded ml-2">&gt;</button>
+            </div>
+        </div>
     </div>
-    
-    
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const productTableBody = document.getElementById("productTableBody");
-    
-                function fetchClientes() {
-    fetch("obtener_clientes.php") // Cambié a obtener_clientes.php
-        .then(response => response.json())
-        .then(clientes => {
-            productTableBody.innerHTML = "";
-            clientes.forEach(cliente => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${cliente.id_cliente}</td>
-                    <td>${cliente.nombre_cliente}</td>
-                    <td>${cliente.correo}</td>
-                    <td>${cliente.telefono}</td>
-                    <td>${cliente.direccion}</td>
-                    <td>
-                        <a href="editar_cliente.html?id=${encodeURIComponent(cliente.id_cliente)}">
-                            <img src="../imagenes/editar.png" alt="Editar" width="30" height="30">
-                        </a>
-                        <a href="#" onclick="eliminarCliente(${cliente.id_cliente}); return false;">
-                            <img src="../imagenes/eliminar.png" alt="Eliminar" width="30" height="30">
-                        </a>
-                    </td>
-                `;
-                productTableBody.appendChild(row);
-            });
-        })
-        .catch(error => console.error("Error al obtener clientes:", error));
-}
 
-    
-                fetchClientes();
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let currentPage = 1;
+            const itemsPerPage = 10;
+            let usuarios = [];
+            
+            function fetchUsuarios() {
+                fetch("obtener_clientes.php")
+                    .then(response => response.json())
+                    .then(data => {
+                        usuarios = data;
+                        renderTable();
+                    });
+            }
+            
+            function renderTable() {
+                const start = (currentPage - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                const visibleClientes = usuarios.slice(start, end);
+                
+                const tableBody = document.getElementById("clienteTableBody");
+                tableBody.innerHTML = "";
+                
+                visibleClientes.forEach(cliente => {
+                    const row = `<tr>
+                        <td class='border p-2'>${cliente.id_cliente}</td>
+                        <td class='border p-2'>${cliente.nombre_cliente}</td>
+                        <td class='border p-2'>${cliente.correo}</td>
+                          <td class="border p-2">${cliente.telefono}</td>
+                        <td class='border p-2'>${cliente.direccion}}</td>
+                        <td class='border p-2'>
+                            <a href='editar_cliente.html?id=${cliente.id_cliente}'>
+                                <img src='../imagenes/editar-cuenta.png' alt='Editar' width='30' height='30'>
+                            </a>
+                            <a href='#' onclick='eliminarCliente(${cliente.id_cliente}); return false;'>
+                                <img src='../imagenes/borrar_cuenta.png' alt='Eliminar' width='30' height='30'>
+                            </a>
+                        </td>
+                    </tr>`;
+                    tableBody.innerHTML += row;
+                });
+            }
+            
+            document.getElementById("prevPage").addEventListener("click", function () {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderTable();
+                    document.getElementById("pageNumber").textContent = currentPage;
+                }
             });
-    
-            function eliminarCliente(id) {
+            
+            document.getElementById("nextPage").addEventListener("click", function () {
+                if (currentPage * itemsPerPage < usuarios.length) {
+                    currentPage++;
+                    renderTable();
+                    document.getElementById("pageNumber").textContent = currentPage;
+                }
+            });
+            
+            fetchUsuarios();
+        });
+        function eliminarCliente(id) {
     if (confirm("¿Estás seguro de que deseas eliminar a este cliente?")) {
         fetch("eliminar_cliente.php", {
             method: "POST",
@@ -128,14 +137,6 @@
         .catch(error => console.error("Error al eliminar el cliente", error));
     }
 }
-
-        </script>
-    
-        
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-        </div>
-
-      
+    </script>
 </body>
 </html>
