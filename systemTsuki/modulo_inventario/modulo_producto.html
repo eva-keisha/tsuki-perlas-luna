@@ -7,8 +7,21 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/modulos.css">
     <script defer src="script.js"></script>
+    <script defer src="../JS/filtrar_productos.js"></script>
+
 </head>
 <body class="bg-gray-100">
+<!-- Modal para mostrar imagen en grande -->
+<div id="imageModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 hidden">
+    <div class="relative">
+        <button id="closeModal" class="absolute top-2 right-2 bg-white text-black rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold">
+            ×
+        </button>
+        <img id="modalImage" class="max-w-full max-h-screen rounded-lg shadow-lg">
+    </div>
+</div>
+
+
     <div class="flex h-screen">
         <!-- Sidebar -->
         <div id="sidebar" class="w-64 bg-gray-800 text-white p-5">
@@ -31,7 +44,11 @@
                 <input type="text" id="search" placeholder="Buscar..." class="border p-2 rounded w-1/3">
                 <a href="registroproducto.html" class="bg-blue-500 text-white px-4 py-2 rounded">Registrar Producto</a>
             </div>
-            
+            <div class="flex justify-center mt-4">
+                <button id="prevPage" class="px-4 py-2 bg-gray-300 rounded mr-2">&lt;</button>
+                <span id="pageNumber" class="px-4 py-2">1</span>
+                <button id="nextPage" class="px-4 py-2 bg-gray-300 rounded ml-2">&gt;</button>
+            </div>
             <table class="w-full border-collapse border border-gray-300">
                 <thead>
                     <tr class="bg-gray-200">
@@ -48,18 +65,14 @@
                 <tbody id="productTableBody"></tbody>
             </table>
             
-            <div class="flex justify-center mt-4">
-                <button id="prevPage" class="px-4 py-2 bg-gray-300 rounded mr-2">&lt;</button>
-                <span id="pageNumber" class="px-4 py-2">1</span>
-                <button id="nextPage" class="px-4 py-2 bg-gray-300 rounded ml-2">&gt;</button>
-            </div>
+          
         </div>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let currentPage = 1;
-            const itemsPerPage = 10;
+            const itemsPerPage = 5;
             let products = [];
             
             function fetchProducts() {
@@ -70,38 +83,47 @@
                         renderTable();
                     });
             }
-            
             function renderTable() {
-                const start = (currentPage - 1) * itemsPerPage;
-                const end = start + itemsPerPage;
-                const visibleProducts = products.slice(start, end);
-                
-                const tableBody = document.getElementById("productTableBody");
-                tableBody.innerHTML = "";
-                
-                visibleProducts.forEach(product => {
-                    const row = `<tr>
-                        <td class='border p-2'>${product.id_producto}</td>
-                        <td class='border p-2'>${product.nombre_producto}</td>
-                        <td class='border p-2'>${product.descripcion}</td>
-                        <td class='border p-2'>$${product.precio}</td>
-                        <td class='border p-2'>${product.stock}</td>
-                        <td class='border p-2'>${product.categoria}</td>
-                        <td class='border p-2'>
-                            ${product.imagen ? `<img src="${product.imagen}" width="50">` : ""}
-                        </td>
-                        <td class='border p-2'>
-                            <a href='editar_producto.html?id=${product.id_producto}'>
-                                <img src='../imagenes/editar_producto.png' alt='Editar' width='30' height='30'>
-                            </a>
-                            <a href='#' onclick='eliminarProducto(${product.id_producto}); return false;'>
-                                <img src='../imagenes/eliminar_producto.png' alt='Eliminar' width='30' height='30'>
-                            </a>
-                        </td>
-                    </tr>`;
-                    tableBody.innerHTML += row;
-                });
-            }
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const visibleProducts = products.slice(start, end);
+    
+    const tableBody = document.getElementById("productTableBody");
+    tableBody.innerHTML = "";
+    
+    visibleProducts.forEach(product => {
+        const row = `<tr>
+            <td class='border p-2'>${product.id_producto}</td>
+            <td class='border p-2'>${product.nombre_producto}</td>
+            <td class='border p-2'>${product.descripcion}</td>
+            <td class='border p-2'>$${product.precio}</td>
+            <td class='border p-2'>${product.stock}</td>
+            <td class='border p-2'>${product.categoria}</td>
+            <td class='border p-2'>
+                ${product.imagen ? `<img src="${product.imagen}" width="50" class="clickable-image cursor-pointer">` : ""}
+            </td>
+            <td class='flex space-x-2>
+                <a href='editar_producto.html?id=${product.id_producto}'>
+                    <img src='../imagenes/editar_producto.png' alt='Editar' width='30' height='30'>
+                </a>
+                <a href='#' onclick='eliminarProducto(${product.id_producto}); return false;'>
+                    <img src='../imagenes/eliminar_producto.png' alt='Eliminar' width='30' height='30'>
+                </a>
+            </td>
+        </tr>`;
+        tableBody.innerHTML += row;
+    });
+
+    // Agregar evento a todas las imágenes para que se agranden al hacer clic
+    document.querySelectorAll(".clickable-image").forEach(img => {
+        img.addEventListener("click", function () {
+            document.getElementById("modalImage").src = this.src;
+            document.getElementById("imageModal").classList.remove("hidden");
+        });
+    });
+}
+
+
             
             document.getElementById("prevPage").addEventListener("click", function () {
                 if (currentPage > 1) {
@@ -118,6 +140,12 @@
                     document.getElementById("pageNumber").textContent = currentPage;
                 }
             });
+
+                        document.getElementById("closeModal").addEventListener("click", function () {
+                document.getElementById("imageModal").classList.add("hidden");
+            });
+
+
             
             fetchProducts();
         });
@@ -143,6 +171,11 @@
                     .catch(error => console.error("Error al eliminar el producto:", error));
                 }
             }
+
+
     </script>
 </body>
+
+
+
 </html>
