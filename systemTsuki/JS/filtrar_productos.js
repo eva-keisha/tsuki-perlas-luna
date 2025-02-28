@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td class='border p-2'>
                     ${product.imagen ? `<img src="${product.imagen}" width="50" class="clickable-image cursor-pointer">` : ""}
                 </td>
-                <td class='border p-2'>
+                <td class='flex space-x-2'>
                     <a href='editar_producto.html?id=${product.id_producto}'>
                         <img src='../imagenes/editar_producto.png' alt='Editar' width='30' height='30'>
                     </a>
