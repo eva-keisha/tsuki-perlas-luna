@@ -47,7 +47,8 @@ document.addEventListener("DOMContentLoaded", function () {
     searchInput.addEventListener("input", function () {
         const searchTerm = searchInput.value.toLowerCase();
         const filteredusuarios = allusuarios.filter(usuario => 
-            usuario.rol.toLowerCase().includes(searchTerm)
+            usuario.rol.toLowerCase().includes(searchTerm) ||
+            usuario.nombre_usuario.toLowerCase().includes(searchTerm) 
         );
         renderTable(filteredusuarios);
     });

@@ -44,7 +44,9 @@ document.addEventListener("DOMContentLoaded", function () {
     searchInput.addEventListener("input", function () {
         const searchTerm = searchInput.value.toLowerCase();
         const filteredclientes = allCliente.filter(cliente => 
-            cliente.nombre_cliente.toLowerCase().includes(searchTerm)
+            cliente.nombre_cliente.toLowerCase().includes(searchTerm) ||
+            cliente.telefono.toLowerCase().includes(searchTerm)
+        
         );
         renderTable(filteredclientes);
     });

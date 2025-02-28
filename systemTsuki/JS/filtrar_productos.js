@@ -31,10 +31,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 </td>
                 <td class='border p-2'>
                     <a href='editar_producto.html?id=${product.id_producto}'>
-                        <img src='../imagenes/editar.png' alt='Editar' width='30' height='30'>
+                        <img src='../imagenes/editar_producto.png' alt='Editar' width='30' height='30'>
                     </a>
                     <a href='#' onclick='eliminarProducto(${product.id_producto}); return false;'>
-                        <img src='../imagenes/eliminar.png' alt='Eliminar' width='30' height='30'>
+                        <img src='../imagenes/eliminar_producto.png' alt='Eliminar' width='30' height='30'>
                     </a>
                 </td>
             </tr>`;
@@ -45,12 +45,12 @@ document.addEventListener("DOMContentLoaded", function () {
     searchInput.addEventListener("input", function () {
         const searchTerm = searchInput.value.toLowerCase();
         const filteredProducts = allProducts.filter(product => 
+            product.nombre_producto.toLowerCase().includes(searchTerm) ||
+            product.precio.toString().includes(searchTerm) ||
             product.categoria.toLowerCase().includes(searchTerm)
         );
         renderTable(filteredProducts);
     });
-
-    
 
     fetchProducts();
 });
