@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ${product.imagen ? `<img src="${product.imagen}" width="50" class="clickable-image cursor-pointer">` : ""}
                 </td>
                 <td class='flex space-x-2'>
-                    <a href='editar_producto.html?id=${product.id_producto}'>
+                    <a href='../modulo_inventario/editar_producto.html?id=${product.id_producto}'>
                         <img src='../imagenes/editar_producto.png' alt='Editar' width='30' height='30'>
                     </a>
                     <a href='#' onclick='eliminarProducto(${product.id_producto}); return false;'>
