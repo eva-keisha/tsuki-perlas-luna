@@ -1,0 +1,88 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4ebe9;
+    color: #333;
+}
+
+/* Encabezado */
+header {
+    background-color: #f8d7da;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Catálogo */
+.catalogo {
+    display: flex;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.filtros {
+    width: 20%;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.productos {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding-left: 20px;
+}
+
+.producto {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.producto img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+button {
+    background-color: #d48b8b;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #a86c6c;
+}
+
+/* Pie de página */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8d7da;
+    margin-top: 20px;
+}
