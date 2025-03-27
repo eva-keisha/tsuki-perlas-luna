@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;600&display=swap');
+
+:root {
+    --azul-marino: #0B3D91;
+    --blanco-perla: #F8F4E3;
+    --dorado-suave: #C1A45F;
+    --gris-claro: #D4D7DD;
+    --negro-profundo: #1A1A1A;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--blanco-perla);
+    color: var(--negro-profundo);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--azul-marino);
+    color: var(--blanco-perla);
+    padding: 1.5rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+nav a {
+    color: var(--blanco-perla);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--dorado-suave);
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(rgba(11, 61, 145, 0.7), rgba(193, 164, 95, 0.5)), url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--blanco-perla);
+    font-family: 'Playfair Display', serif;
+}
+
+.hero h2 {
+    font-size: 2.8rem;
+}
+
+.hero p {
+    font-size: 1.4rem;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--dorado-suave);
+    color: var(--negro-profundo);
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background-color: #A58A4E;
+}
+
+section {
+    padding: 60px;
+    text-align: center;
+    max-width: 900px;
+    margin: auto;
+}
+
+footer {
+    background-color: var(--azul-marino);
+    color: var(--blanco-perla);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 1rem;
+} 
