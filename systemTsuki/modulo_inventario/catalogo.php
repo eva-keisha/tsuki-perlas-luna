@@ -4,10 +4,8 @@ $username = "root";
 $password = "";
 $dbname = "tsuki_joyeria";
 
-// Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verificar conexión
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
@@ -23,7 +21,6 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo - Tsuki</title>
     <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/modulos.css">
     <script defer src="../JS/filtrar_catalogo.js"></script>
 </head>
 <body>
@@ -42,11 +39,7 @@ $result = $conn->query($sql);
     <section class="catalogo">
         <aside class="filtros">
             <h2>Filtros</h2>
-
-            <!-- Buscador -->
-            <input type="text" id="search" placeholder="Buscar por nombre..." class="border p-2 rounded">
-
-            <!-- Filtros por categoría -->
+            <input type="text" id="search" placeholder="Buscar por nombre...">
             <h3>Categorías</h3>
             <ul>
                 <li><input type="checkbox" class="categoria" value="anillos"> Anillos</li>
@@ -63,7 +56,7 @@ $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='producto' data-categoria='" . htmlspecialchars($row['categoria']) . "'>";
-                    echo '<img src="' . htmlspecialchars($row['imagen']) . '" alt="' . htmlspecialchars($row['nombre_producto']) . '" width="150">';
+                    echo '<img src="' . htmlspecialchars($row['imagen']) . '" alt="' . htmlspecialchars($row['nombre_producto']) . '">';
                     echo "<h3>" . htmlspecialchars($row["nombre_producto"]) . "</h3>";
                     echo "<p>$" . htmlspecialchars($row["precio"]) . "</p>";
                     echo "<a href='detalle_producto.php?id_producto=" . $row["id_producto"] . "'><button>Ver más</button></a>";

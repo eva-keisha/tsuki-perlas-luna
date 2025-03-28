@@ -23,9 +23,21 @@
             <label for="contraseña">Contraseña:</label>
             <input type="password" id="contraseña" name="contraseña" required>
 
-            <label for="rol">Rol:</label>
+           <!---
+           <label for="rol">Rol:</label>
             <input type="text" id="rol" name="rol" required>
-
+           -->
+            <div class="form-group">
+                <label for="rol">Rol:</label>
+                <select id="rol" name="rol" required>
+                    <option value="">Seleccione un rol</option>
+                    <option value="admin">Administrador</option>
+                    <option value="vendedor">Vendedor</option>
+                    <option value="proveedor">Proveedor</option>
+                    <option value="gerente">Gerente</option>
+                    <option value="soporte_tecnico">Soporte Técnico</option>
+                </select>
+                
             <div class="button-container">
                 <button type="submit">Registrar</button>
                 <button type="button" class="cancel-btn" onclick="window.location.href='modulo_usuario.html'">Cancelar</button>

@@ -1,24 +1,25 @@
 :root {
-    --color-white: #FAF8F6;
-    --color-blue-gray: #A8BFCF;
-    --color-beige: #E5D9C7;
-    --color-charcoal: #3A3A3A;
-    --color-gold: #D4B996;
-    --color-soft-brown: #C4A484; /* Color adicional para complementar */
+    --color-pink: #F2AAAE;
+    --color-purple: #D0AAD1;
+    --color-yellow: #FFE7C1;
+    --color-blue: #D0E9E9;
+    --color-orange: #F4C09D;
+    --color-bg: #FFF;
+    --color-text: #333;
 }
 
 body {
-    background: var(--color-white);
-    color: var(--color-charcoal);
-    font-family: "Arial", sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
 /* Sidebar */
 #sidebar {
-    background: linear-gradient(to bottom, var(--color-blue-gray), var(--color-charcoal));
-    color: var(--color-white);
+    background: linear-gradient(to bottom, var(--color-purple), var(--color-pink));
+    color: white;
     width: 250px;
     height: 100vh;
     padding: 20px;
@@ -46,15 +47,15 @@ body {
 #sidebar nav ul li a {
     display: block;
     padding: 10px;
-    color: var(--color-white);
+    color: white;
     text-decoration: none;
     border-radius: 5px;
     transition: background 0.3s;
 }
 
 #sidebar nav ul li a:hover {
-    background: var(--color-gold);
-    color: var(--color-charcoal);
+    background: var(--color-yellow);
+    color: var(--color-text);
 }
 
 /* Contenedor principal */
@@ -65,7 +66,7 @@ body {
 
 /* Título */
 h2 {
-    color: var(--color-blue-gray);
+    color: var(--color-purple);
     font-size: 2rem;
     text-align: center;
     margin-bottom: 20px;
@@ -80,7 +81,7 @@ h2 {
 }
 
 input#search {
-    border: 2px solid var(--color-blue-gray);
+    border: 2px solid var(--color-purple);
     padding: 10px;
     border-radius: 5px;
     width: 40%;
@@ -88,13 +89,13 @@ input#search {
 }
 
 input#search:focus {
-    border-color: var(--color-gold);
+    border-color: var(--color-pink);
     outline: none;
 }
 
 a.bg-blue-500 {
-    background: var(--color-gold);
-    color: var(--color-charcoal);
+    background: var(--color-pink);
+    color: white;
     padding: 10px 20px;
     text-decoration: none;
     font-weight: bold;
@@ -103,39 +104,38 @@ a.bg-blue-500 {
 }
 
 a.bg-blue-500:hover {
-    background: var(--color-blue-gray);
-    color: var(--color-white);
+    background: var(--color-purple);
 }
 
 /* Tabla */
 table {
     width: 100%;
     border-collapse: collapse;
-    background: var(--color-white);
+    background: var(--color-bg);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 th, td {
-    border: 1px solid var(--color-soft-brown);
+    border: 1px solid var(--color-orange);
     padding: 10px;
     text-align: left;
 }
 
 th {
-    background: var(--color-blue-gray);
-    color: var(--color-white);
+    background: var(--color-purple);
+    color: white;
     font-weight: bold;
 }
 
 tbody tr:nth-child(even) {
-    background: var(--color-beige);
+    background: var(--color-blue);
 }
 
 tbody tr:hover {
-    background: var(--color-gold);
-    color: var(--color-charcoal);
+    background: var(--color-yellow);
+    color: var(--color-text);
 }
 
 /* Paginación */
@@ -144,8 +144,8 @@ tbody tr:hover {
 }
 
 button {
-    background: var(--color-blue-gray);
-    color: var(--color-white);
+    background: var(--color-pink);
+    color: white;
     border: none;
     padding: 8px 12px;
     margin: 0 5px;
@@ -155,8 +155,7 @@ button {
 }
 
 button:hover {
-    background: var(--color-gold);
-    color: var(--color-charcoal);
+    background: var(--color-purple);
 }
 
 /* Iconos de acción */
@@ -178,21 +177,4 @@ td img.clickable-image {
     height: 70px;
     object-fit: cover;
     border-radius: 10px;
-}
-
-/* Modal */
-#imageModal {
-    background: rgba(0, 0, 0, 0.75);
-}
-
-#closeModal {
-    background: var(--color-white);
-    color: var(--color-charcoal);
-    border-radius: 50%;
-    font-weight: bold;
-    transition: background 0.3s;
-}
-
-#closeModal:hover {
-    background: var(--color-gold);
 }
