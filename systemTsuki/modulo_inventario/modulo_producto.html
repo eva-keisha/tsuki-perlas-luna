@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="../css/modulos.css">
     <script defer src="script.js"></script>
     <script defer src="../JS/filtrar_productos.js"></script>
+    <!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- jsPDF AutoTable -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
 
 </head>
 <body class="bg-gray-100">
@@ -30,7 +35,7 @@
                 <ul class="space-y-4">
                     <li><a href="../index.html" class="block py-2 px-4 rounded hover:bg-gray-700">Inicio</a></li>
                     <li><a href="modulo_producto.html" id="inventario" class="block py-2 px-4 rounded hover:bg-gray-700">Inventario</a></li>
-                    <li><a href="#" id="ventas" class="block py-2 px-4 rounded hover:bg-gray-700">Ventas</a></li>
+                    <li><a href="../modulo_ventas/modulo_ventas.html" id="ventas" class="block py-2 px-4 rounded hover:bg-gray-700">Ventas</a></li>
                     <li><a href="../modulo_usuarios/modulo_usuario.html" id="usuarios" class="block py-2 px-4 rounded hover:bg-gray-700">Usuarios</a></li>
                     <li><a href="../modulo_cliente/modulo_cliente.html" id="clientes" class="block py-2 px-4 rounded hover:bg-gray-700">Clientes</a></li>
                     <li><a href="catalogo.php" id="catalogo" class="block py-2 px-4 rounded hover:bg-gray-700">Catalogo</a></li>
@@ -44,6 +49,12 @@
             <div class="flex justify-between mb-4">
                 <input type="text" id="search" placeholder="Buscar..." class="border p-2 rounded w-1/3">
                 <a href="registroproducto.html" class="bg-blue-500 text-white px-4 py-2 rounded">Registrar Producto</a>
+
+   <!-- generacion de reporte  -->
+                <button id="exportPDF" class="bg-green-500 text-white px-4 py-2 rounded ml-4">
+    Exportar PDF
+</button>
+
             </div>
             <div class="flex justify-center mt-4">
                 <button id="prevPage" class="px-4 py-2 bg-gray-300 rounded mr-2">&lt;</button>
@@ -115,7 +126,6 @@
         tableBody.innerHTML += row;
     });
 
-    // Agregar evento a todas las imágenes para que se agranden al hacer clic
     document.querySelectorAll(".clickable-image").forEach(img => {
         img.addEventListener("click", function () {
             document.getElementById("modalImage").src = this.src;
@@ -123,8 +133,6 @@
         });
     });
 }
-
-
             
             document.getElementById("prevPage").addEventListener("click", function () {
                 if (currentPage > 1) {
@@ -173,6 +181,28 @@
                 }
             }
 
+document.getElementById("exportPDF").addEventListener("click", function () {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    doc.text("Reporte de Inventario", 14, 15);
+
+    // Obtiene la tabla y exporta con autoTable
+    doc.autoTable({
+        html: 'table', // Usa directamente la tabla del DOM
+        startY: 20,
+        headStyles: { fillColor: [55, 65, 81] }, // gris oscuro estilo Tailwind
+        styles: {
+            fontSize: 8,
+            cellPadding: 2,
+        },
+        didDrawCell: function (data) {
+            // Si hay imágenes, se pueden procesar manualmente aquí (más avanzado)
+        }
+    });
+
+    doc.save('reporte_inventario.pdf');
+});
 
     </script>
 </body>

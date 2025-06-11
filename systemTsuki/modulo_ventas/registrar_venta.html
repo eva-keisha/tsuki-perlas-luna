@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Venta</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script defer src="validar_venta.js"></script>
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+        <h2 class="text-2xl font-semibold mb-6 text-center">Registrar Venta</h2>
+        <form id="formVenta" action="guardar_venta.php" method="POST" class="space-y-4">
+            <div>
+                <label for="id_cliente" class="block font-medium">Cliente:</label>
+                <select name="id_cliente" id="id_cliente" class="w-full border p-2 rounded" required>
+                    <option value="">Seleccionar cliente</option>
+                    <?php
+                        include '../conexion.php';
+                        $query = "SELECT id_cliente, nombre FROM clientes";
+                        $result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<option value='{$row['id_cliente']}'>{$row['nombre']}</option>";
+                        }
+                    ?>
+                </select>
+            </div>
+            <div>
+                <label for="total" class="block font-medium">Total:</label>
+                <input type="number" step="0.01" name="total" id="total" class="w-full border p-2 rounded" required>
+            </div>
+            <div>
+                <label for="metodo_pago" class="block font-medium">Método de Pago:</label>
+                <select name="metodo_pago" id="metodo_pago" class="w-full border p-2 rounded" required>
+                    <option value="">Seleccionar</option>
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Tarjeta">Tarjeta</option>
+                    <option value="Transferencia">Transferencia</option>
+                </select>
+            </div>
+            <div>
+                <label for="fecha_venta" class="block font-medium">Fecha de Venta:</label>
+                <input type="date" name="fecha_venta" id="fecha_venta" class="w-full border p-2 rounded" required>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Guardar Venta</button>
+        </form>
+    </div>
+</body>
+</html>
