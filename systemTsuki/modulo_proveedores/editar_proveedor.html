@@ -1,0 +1,89 @@
+<!-- Este archivo se accede con ?id=ID_PROVEEDOR -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Proveedor</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
+        <h2 class="text-2xl font-bold mb-4">Editar Proveedor</h2>
+        <form id="formEditarProveedor" method="POST">
+            <input type="hidden" id="id_proveedor" name="id_proveedor">
+
+            <label class="block mt-2 font-semibold">Nombre:</label>
+            <input type="text" name="nombre" id="nombre" class="w-full border px-4 py-2 rounded" required>
+
+            <label class="block mt-2 font-semibold">Contacto:</label>
+            <input type="text" name="contacto" id="contacto" class="w-full border px-4 py-2 rounded">
+
+            <label class="block mt-2 font-semibold">Teléfono:</label>
+            <input type="text" name="telefono" id="telefono" class="w-full border px-4 py-2 rounded">
+
+            <label class="block mt-2 font-semibold">Correo:</label>
+            <input type="email" name="email" id="email" class="w-full border px-4 py-2 rounded">
+
+            <label class="block mt-2 font-semibold">Dirección:</label>
+            <input type="text" name="direccion" id="direccion" class="w-full border px-4 py-2 rounded">
+
+            <label class="block mt-2 font-semibold">Materiales:</label>
+            <div id="materialesContainer" class="flex flex-wrap gap-2 mt-1"></div>
+
+            <div class="mt-4">
+                <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded">Actualizar</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch(`obtener_datos_proveedor.php?id=${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("id_proveedor").value = data.id_proveedor;
+                    document.getElementById("nombre").value = data.nombre;
+                    document.getElementById("contacto").value = data.contacto;
+                    document.getElementById("telefono").value = data.telefono;
+                    document.getElementById("email").value = data.email;
+                    document.getElementById("direccion").value = data.direccion;
+
+                    // Cargar materiales
+                    fetch("obtener_materiales.php")
+                        .then(res => res.json())
+                        .then(materiales => {
+                            const container = document.getElementById("materialesContainer");
+                            materiales.forEach(mat => {
+                                const check = document.createElement("label");
+                                check.className = "inline-flex items-center space-x-2";
+                                check.innerHTML = `
+                                    <input type="checkbox" name="materiales[]" value="${mat.id_material}" ${data.materiales.includes(mat.id_material) ? "checked" : ""}>
+                                    <span>${mat.nombre_material}</span>
+                                `;
+                                container.appendChild(check);
+                            });
+                        });
+                });
+        });
+
+        document.getElementById("formEditarProveedor").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch("actualizar_proveedor.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.message);
+                if (data.success) location.href = "modulo_proveedores.html";
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Materiales</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
+        <h2 class="text-2xl font-bold mb-4">Materiales</h2>
+
+        <form id="formMaterial" class="flex gap-4 mb-6">
+            <input type="text" id="nombre_material" name="nombre_material" placeholder="Nombre del material" class="border px-4 py-2 rounded w-full">
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Agregar</button>
+        </form>
+
+        <table class="w-full border-collapse border border-gray-300">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border p-2">ID</th>
+                    <th class="border p-2">Nombre</th>
+                    <th class="border p-2">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="materialesTable"></tbody>
+        </table>
+    </div>
+
+    <script>
+        const table = document.getElementById("materialesTable");
+
+        function cargarMateriales() {
+            fetch("obtener_materiales.php")
+                .then(res => res.json())
+                .then(data => {
+                    table.innerHTML = "";
+                    data.forEach(mat => {
+                        table.innerHTML += `
+                            <tr>
+                                <td class="border p-2">${mat.id_material}</td>
+                                <td class="border p-2">${mat.nombre_material}</td>
+                                <td class="border p-2">
+                                    <button onclick="eliminarMaterial(${mat.id_material})" class="bg-red-500 text-white px-2 py-1 rounded">Eliminar</button>
+                                </td>
+                            </tr>`;
+                    });
+                });
+        }
+
+        document.getElementById("formMaterial").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const nombre = document.getElementById("nombre_material").value;
+
+            fetch("agregar_material.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `nombre_material=${encodeURIComponent(nombre)}`
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    cargarMateriales();
+                    document.getElementById("formMaterial").reset();
+                } else {
+                    alert("Error: " + data.message);
+                }
+            });
+        });
+
+        function eliminarMaterial(id) {
+            if (confirm("¿Eliminar este material?")) {
+                fetch("eliminar_material.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: `id_material=${id}`
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) cargarMateriales();
+                    else alert("Error al eliminar");
+                });
+            }
+        }
+
+        cargarMateriales();
+    </script>
+</body>
+</html>

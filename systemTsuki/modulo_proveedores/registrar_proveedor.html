@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registrar Proveedor</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/formulario.css">
+</head>
+<body class="bg-gray-100">
+  <div class="max-w-3xl mx-auto mt-10 bg-white p-8 rounded shadow">
+    <h2 class="text-2xl font-semibold mb-6">Registrar Nuevo Proveedor</h2>
+    <form id="formProveedor" class="space-y-4">
+      <div>
+        <label for="nombre" class="block font-medium">Nombre del Proveedor</label>
+        <input type="text" id="nombre" name="nombre" required class="w-full border px-4 py-2 rounded">
+      </div>
+
+     
+      <div>
+        <label for="tipo_proveedor" class="block font-medium">Tipo de Proveedor</label>
+        <select id="tipo_proveedor" name="tipo_proveedor" required class="w-full border px-4 py-2 rounded">
+          <option value="" disabled selected>Selecciona una opción</option>
+          <option value="Fabricante">Fabricante</option>
+          <option value="Distribuidor">Distribuidor</option>
+          <option value="Mayorista">Mayorista</option>
+          <option value="Artesano">Artesano</option>
+          <option value="Importador">Importador</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="email" class="block font-medium">Correo Electrónico</label>
+        <input type="email" id="email" name="email" required class="w-full border px-4 py-2 rounded">
+      </div>
+
+      <div>
+        <label for="telefono" class="block font-medium">Teléfono</label>
+        <input type="text" id="telefono" name="telefono" required class="w-full border px-4 py-2 rounded">
+      </div>
+
+      <div>
+        <label for="materiales" class="block font-medium">Selecciona Materiales</label>
+        <select id="materiales" name="materiales[]" multiple class="w-full border px-4 py-2 rounded">
+          <!-- Se llenará dinámicamente desde JS -->
+        </select>
+      </div>
+
+      <div class="flex justify-end">
+        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Registrar</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Cargar materiales dinámicamente
+      fetch("obtener_materiales.php")
+        .then(res => res.json())
+        .then(materiales => {
+          const select = document.getElementById("materiales");
+          if (!Array.isArray(materiales)) {
+            console.error("Respuesta inesperada:", materiales);
+            return;
+          }
+          materiales.forEach(mat => {
+            const option = document.createElement("option");
+            option.value = mat.id_material;
+            option.textContent = mat.nombre_material;
+            select.appendChild(option);
+          });
+        })
+        .catch(err => {
+          console.error("Error al cargar materiales:", err);
+        });
+
+      // Manejar el envío del formulario
+      const form = document.getElementById("formProveedor");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch("guardar_proveedor.php", {
+          method: "POST",
+          body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            alert("✅ Proveedor registrado correctamente.");
+            window.location.href = "modulo_proveedores.html";
+          } else {
+            alert("❌ Error: " + (data.message || "No se pudo registrar."));
+          }
+        })
+        .catch(error => {
+          console.error("Error al registrar proveedor:", error);
+          alert("❌ Error en la conexión.");
+        });
+      });
+    });
+  </script>
+</body>
+</html>
