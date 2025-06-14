@@ -1,3 +1,4 @@
+/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -5,90 +6,109 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(180deg, #ebca8b 0%, #ffffff 100%);
-    color: #333;
+    font-family: 'Georgia', serif;
+    background-color: #fdfcfa;
+    color: #2c2c2c;
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
 }
 
+/* Contenedor principal */
 .contenedor {
+    background-color: #ffffff;
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Logo */
+.logo img {
+    width: 80px;
+    margin-bottom: 1.5rem;
+}
+
+/* Título */
+.formulario h2 {
+    font-size: 1.8rem;
+    color: #8a4eaf;
+    margin-bottom: 1.5rem;
+}
+
+/* Formulario */
+form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background: linear-gradient(180deg, #ffffff 0%, #ebca8b 100%);
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 400px;
-}
-
-.logo img {
-    max-width: 100px;
-    margin-bottom: 20px;
-}
-
-.formulario {
-    width: 100%;
-}
-
-h2 {
-    color: #341f07;
-    margin-bottom: 20px;
+    gap: 1rem;
+    text-align: left;
 }
 
 label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+    color: #333;
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"] {
+    padding: 0.7rem;
+    border-radius: 8px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    font-size: 0.95rem;
+    transition: border 0.3s;
 }
 
+input:focus {
+    border-color: #8a4eaf;
+    outline: none;
+}
+
+/* Botón */
 button {
-    width: 100%;
-    padding: 10px;
-    background-color: #ebca8b;
-    color: #281405;
+    background-color: #8a4eaf;
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    padding: 0.9rem;
+    font-size: 1rem;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    margin-top: 1rem;
     transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #281405;
-    color: #ebca8b;
+    background-color: #753e99;
 }
 
+/* Checkbox y texto */
+.form-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* Enlace al registro */
 p {
-    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
 }
 
-a {
-    color: #341f07;
+p a {
+    color: #8a4eaf;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s;
 }
 
-a:hover {
-    text-decoration: underline;
-}
-
-.form-group {
-    margin: 10px 0;
-}
-
-.form-group label {
-    display: inline;
-    margin-left: 5px;
+p a:hover {
+    color: #753e99;
 }

@@ -1,103 +1,135 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tsuki no Umi - Joyería de Perlas</title>
-    <link rel="stylesheet" href="css/inicio_diseño.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tsuki no Umi - Joyería de Perlas</title>
+  <link rel="stylesheet" href="css/inicio_diseño.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="logo_banner/logo noche.png" alt="Logo de Tsuki no Umi">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="productos.html">Colecciones</a></li>
-                <li><a href="sobre_nosotros.html">Nuestra Historia</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section class="banner">
-        <img src="logo_banner/banner noche.png" alt="Elegancia y sofisticación en perlas">
-    </section>
-    
-    <section class="sobre-nosotros section-alternate">
-        <div class="contenedor">
-            <div class="texto">
-                <h2>Tsuki no Umi (月の海) - "Mar de la Luna"</h2>
-                <p>Inspirada en la belleza mística de la luna reflejada en el océano, Tsuki no Umi es una joyería exclusiva especializada en perlas de alta calidad. Cada pieza es una obra de arte que captura la elegancia atemporal y la pureza de la naturaleza, combinando la tradición artesanal con un diseño sofisticado.</p>
-            </div>
-            <div class="imagen">
-                <img src="productos/imgs_collar/img_co3.jpg" alt="Perlas elegantes">
-            </div>
-        </div>
-    </section>
-    
-    <section class="valores">
-        <h2>Nuestros Valores</h2>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-container">
+      <div class="logo">
+        <img src="logo_banner/logo noche.png" alt="Logo Tsuki no Umi">
+      </div>
+      <nav class="nav">
         <ul>
-            <li><strong>Autenticidad:</strong> Solo utilizamos perlas genuinas cuidadosamente seleccionadas.</li>
-            <li><strong>Artesanía excepcional:</strong> Cada joya es diseñada con precisión y pasión por expertos joyeros.</li>
-            <li><strong>Sostenibilidad:</strong> Nos comprometemos con prácticas responsables y materiales éticos.</li>
-            <li><strong>Elegancia atemporal:</strong> Diseños clásicos y contemporáneos para realzar la belleza natural.</li>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="productos.html">Colecciones</a></li>
+          <li><a href="sobre_nosotros.html">Nuestra Historia</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
         </ul>
-    </section>
-    
-    <section class="colecciones">
-        <h2>Nuestras Colecciones</h2>
-        <div class="galeria">
-            <div class="coleccion">
-                <h3>Hikari (光 - Luz)</h3>
-                <p>Perlas de tonos luminosos en monturas doradas y plateadas.</p>
-                <img src="productos/hikari.png" alt="Colección Hikari">
-            </div>
-            <div class="coleccion">
-                <img src="productos/shizuku.png" alt="Colección Shizuku">
-                <h3>Shizuku (雫 - Gotas)</h3>
-                <p>Delicadas piezas inspiradas en el rocío del mar.</p>
-            </div>
-            <div class="coleccion">
-                <h3>Nagisa (渚 - Orilla del Mar)</h3>
-                <p>Diseños fluidos con inspiración marina.</p>
-                <img src="productos/nagisa.png" alt="Colección Nagisa">
-            </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO/BANNER -->
+  <section class="hero">
+    <div class="hero-content container">
+      <div class="text">
+        <h1>Perlas con Elegancia Atemporal</h1>
+        <p>Tsuki no Umi combina la mística lunar con la sofisticación moderna.</p>
+        <a href="productos.html" class="btn">Descubre la colección</a>
+      </div>
+      <div class="image">
+        <img src="logo_banner/banner noche.png" alt="Banner de perlas">
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <section class="beneficios container">
+    <div class="beneficio"><h3>📦 Envío Gratis</h3><p>En todos los pedidos nacionales.</p></div>
+    <div class="beneficio"><h3>✨ Diseño Exclusivo</h3><p>Joyería única y artesanal.</p></div>
+    <div class="beneficio"><h3>🎁 Empaque Premium</h3><p>Cada joya, una experiencia.</p></div>
+    <div class="beneficio"><h3>💎 Calidad Suprema</h3><p>Perlas auténticas seleccionadas.</p></div>
+  </section>
+
+  <!-- SOBRE NOSOTROS -->
+  <section class="sobre-nosotros section-alternate">
+    <div class="container flex">
+      <div class="texto">
+        <h2>Tsuki no Umi (月の海)</h2>
+        <p>Inspirada en la luna y el mar, Tsuki no Umi es una joyería especializada en perlas de calidad excepcional. Fusionamos tradición, artesanía y elegancia en cada pieza.</p>
+      </div>
+      <div class="imagen">
+        <img src="productos/imgs_collar/img_co3.jpg" alt="Perlas elegantes">
+      </div>
+    </div>
+  </section>
+
+  <!-- COLECCIONES DESTACADAS -->
+  <section class="colecciones">
+    <div class="container">
+      <h2>Nuestras Colecciones</h2>
+      <div class="galeria">
+        <div class="coleccion">
+          <img src="productos/hikari.png" alt="Colección Hikari">
+          <h3>Hikari (光 - Luz)</h3>
+          <p>Brillo y sofisticación en tonos cálidos.</p>
         </div>
-    </section>
-    
-    <section class="historia section-alternate">
-        <div class="contenedor">
-            <div class="imagen">
-                <img src="productos/imgs_conjuntos/img_c6.jpg" alt="Historia de la joyería">
-            </div>
-            <div class="texto">
-                <h2>Nuestra Historia</h2>
-                <p>Fundada con la visión de capturar la esencia de la luna reflejada en el océano, Tsuki no Umi combina la tradición japonesa con la elegancia moderna. Cada perla es seleccionada con cuidado, asegurando la máxima calidad y brillo, para convertirlas en piezas únicas que cuentan historias de belleza y sofisticación.</p>
-            </div>
+        <div class="coleccion">
+          <img src="productos/shizuku.png" alt="Colección Shizuku">
+          <h3>Shizuku (雫 - Gotas)</h3>
+          <p>Delicadeza y sutileza inspiradas en el agua.</p>
         </div>
-    </section>
-    
-    <section class="contacto">
-        <h2>Ubicación y Contacto</h2>
-        <div class="contenedor">
-            <div class="texto">
-                <p><strong>📍 Dirección:</strong> [Dirección ficticia]</p>
-                <p><strong>📞 Teléfono:</strong> [Número de contacto]</p>
-                <p><strong>📧 Correo:</strong> contacto@tsukinoumi.com</p>
-                <p><strong>🌐 Sitio web:</strong> <a href="https://www.tsukinoumi.com">www.tsukinoumi.com</a></p>
-            </div>
-            <div class="imagen">
-                <img src="productos/image.png" alt="Ubicación y contacto">
-            </div>
+        <div class="coleccion">
+          <img src="productos/nagisa.png" alt="Colección Nagisa">
+          <h3>Nagisa (渚 - Orilla)</h3>
+          <p>Diseños marinos con fluidez natural.</p>
         </div>
-    </section>
-    
-    <footer>
-        <p>&copy; 2024 Tsuki no Umi. Todos los derechos reservados.</p>
-    </footer>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORIA -->
+  <section class="historia section-alternate">
+    <div class="container flex">
+      <div class="imagen">
+        <img src="productos/imgs_conjuntos/img_c6.jpg" alt="Historia de Tsuki no Umi">
+      </div>
+      <div class="texto">
+        <h2>Nuestra Historia</h2>
+        <p>Fundada con la visión de reflejar la luna sobre el mar, Tsuki no Umi fusiona la estética japonesa con el lujo moderno. Cada pieza cuenta una historia de elegancia y significado.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPOS DE JOYA -->
+  <section class="tipos-de-joya">
+    <div class="container">
+      <h2>Elige tu Estilo</h2>
+      <div class="opciones">
+        <div class="opcion"><img src="productos/imgs_anillos/anillo1.jpg" alt="Anillo"><p>Anillos</p></div>
+        <div class="opcion"><img src="productos/imgs_collares/collar1.jpg" alt="Collar"><p>Collares</p></div>
+        <div class="opcion"><img src="productos/imgs_pulseras/pulsera1.jpg" alt="Pulsera"><p>Pulseras</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contacto">
+    <div class="container flex">
+      <div class="texto">
+        <h2>Contáctanos</h2>
+        <p><strong>📍 Dirección:</strong> [Dirección ficticia]</p>
+        <p><strong>📞 Teléfono:</strong> [Número de contacto]</p>
+        <p><strong>📧 Correo:</strong> contacto@tsukinoumi.com</p>
+        <p><strong>🌐 Web:</strong> <a href="#">www.tsukinoumi.com</a></p>
+      </div>
+      <div class="imagen">
+        <img src="productos/image.png" alt="Mapa de ubicación">
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2024 Tsuki no Umi. Todos los derechos reservados.</p>
+  </footer>
+
 </body>
 </html>
