@@ -28,7 +28,8 @@ $result = $conn->query($sql);
         <h1>Tsuki</h1>
         <nav>
             <ul>
-                <li><a href="#">Inicio</a></li>
+                <li><a href="../../pagina_web/index.html">Inicio html</a></li>
+                  <li><a href="index.php">Inicio php</a></li>
                 <li><a href="catalogo.php">Catálogo</a></li>
                 <li><a href="#">Ofertas</a></li>
                 <li><a href="#">Contacto</a></li>

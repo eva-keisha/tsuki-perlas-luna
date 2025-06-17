@@ -1,10 +1,33 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "tsuki_joyeria";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+// Consulta para obtener 3 productos representativos
+$sql = "SELECT nombre_producto, imagen FROM productos LIMIT 3";
+$result = $conn->query($sql);
+$colecciones = [];
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $colecciones[] = $row;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tsuki no Umi - Joyería de Perlas</title>
-  <link rel="stylesheet" href="css/inicio_diseño.css">
+  <link rel="stylesheet" href="../../pagina_web/css/inicio_diseño.css">
+     <link rel="stylesheet" href="../../pagina_web/css/productos.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -13,12 +36,12 @@
   <header class="header">
     <div class="container header-container">
       <div class="logo">
-        <img src="logo_banner/logo noche.png" alt="Logo Tsuki no Umi">
+        <img src="../../pagina_web/logo_banner/logo noche.png" alt="Logo Tsuki no Umi">
       </div>
       <nav class="nav">
         <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="../systemTsuki/modulo_inventario/catalogo.php">Colecciones</a></li>
+          <li><a href="index.php">Inicio</a></li>
+          <li><a href="catalogo.php">Colecciones</a></li>
           <li><a href="sobre_nosotros.html">Nuestra Historia</a></li>
           <li><a href="contacto.html">Contacto</a></li>
         </ul>
@@ -26,7 +49,7 @@
     </div>
   </header>
 
-  <!-- HERO/BANNER -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-content container">
       <div class="text">
@@ -35,7 +58,7 @@
         <a href="productos.html" class="btn">Descubre la colección</a>
       </div>
       <div class="image">
-        <img src="logo_banner/banner noche.png" alt="Banner de perlas">
+        <img src="../../pagina_web/logo_banner/banner noche.png" alt="Banner de perlas">
       </div>
     </div>
   </section>
@@ -56,31 +79,25 @@
         <p>Inspirada en la luna y el mar, Tsuki no Umi es una joyería especializada en perlas de calidad excepcional. Fusionamos tradición, artesanía y elegancia en cada pieza.</p>
       </div>
       <div class="imagen">
-        <img src="productos/imgs_collar/img_co3.jpg" alt="Perlas elegantes">
+        <img src="../../pagina_web/productos/imgs_collar/img_co3.jpg" alt="Perlas elegantes">
       </div>
     </div>
   </section>
 
-  <!-- COLECCIONES DESTACADAS -->
+  <!-- COLECCIONES DINÁMICAS -->
   <section class="colecciones">
     <div class="container">
       <h2>Nuestras Colecciones</h2>
       <div class="galeria">
-        <div class="coleccion">
-          <img src="productos/hikari.png" alt="Colección Hikari">
-          <h3>Hikari (光 - Luz)</h3>
-          <p>Brillo y sofisticación en tonos cálidos.</p>
-        </div>
-        <div class="coleccion">
-          <img src="productos/shizuku.png" alt="Colección Shizuku">
-          <h3>Shizuku (雫 - Gotas)</h3>
-          <p>Delicadeza y sutileza inspiradas en el agua.</p>
-        </div>
-        <div class="coleccion">
-          <img src="productos/nagisa.png" alt="Colección Nagisa">
-          <h3>Nagisa (渚 - Orilla)</h3>
-          <p>Diseños marinos con fluidez natural.</p>
-        </div>
+        <?php
+        foreach ($colecciones as $coleccion) {
+            echo "<div class='coleccion'>";
+            echo "<img src='" . htmlspecialchars($coleccion['imagen']) . "' alt='" . htmlspecialchars($coleccion['nombre_producto']) . "'>";
+            echo "<h3>" . htmlspecialchars($coleccion['nombre_producto']) . "</h3>";
+            echo "<p>Diseño exclusivo con perlas únicas.</p>";
+            echo "</div>";
+        }
+        ?>
       </div>
     </div>
   </section>
@@ -98,17 +115,36 @@
     </div>
   </section>
 
-  <!-- TIPOS DE JOYA -->
-  <section class="tipos-de-joya">
-    <div class="container">
-      <h2>Elige tu Estilo</h2>
-      <div class="opciones">
-        <div class="opcion"><img src="productos/imgs_anillos/anillo1.jpg" alt="Anillo"><p>Anillos</p></div>
-        <div class="opcion"><img src="productos/imgs_collares/collar1.jpg" alt="Collar"><p>Collares</p></div>
-        <div class="opcion"><img src="productos/imgs_pulseras/pulsera1.jpg" alt="Pulsera"><p>Pulseras</p></div>
-      </div>
-    </div>
-  </section>
+  <!-- CATALOGO-->
+    <section class="catalogos-productos">
+        <h2>Catalogo</h2>
+        <div class="catalogos-contenedor">
+            <a href="catalogo.php" class="catalogo-item">
+                <img src="../../pagina_web/icons/arete.png" alt="Aretes">
+                <p>Aretes</p>
+            </a>
+            <a href="catalogo.php" class="catalogo-item">
+                <img src="../../pagina_web/icons/collar-de-perlas.png" alt="Collares">
+                <p>Collares</p>
+            </a>
+            <a href="catalogo.php" class="catalogo-item">
+                <img src="../../pagina_web/icons/joyas.png" alt="Conjuntos">
+                <p>Conjuntos</p>
+            </a>
+            <a href="catalogo.php" class="catalogo-item">
+                <img src="../../pagina_web/icons/pulsera.png" alt="Pulseras">
+                <p>Pulseras</p>
+            </a>
+            <a href="catalogo.php" class="catalogo-item">
+                <img src="../../pagina_web/icons/anillos.png" alt="Anillos">
+                <p>Anillos</p>
+            </a>
+            <a href="catalogo.php" class="catalogo-item">
+                <img src="../../pagina_web/icons/accesorio.png" alt="Accesorios">
+                <p>Accesorios</p>
+            </a>
+        </div>
+    </section>
 
   <!-- CONTACTO -->
   <section class="contacto">
@@ -121,7 +157,7 @@
         <p><strong>🌐 Web:</strong> <a href="#">www.tsukinoumi.com</a></p>
       </div>
       <div class="imagen">
-        <img src="productos/image.png" alt="Mapa de ubicación">
+        <img src="../../pagina_web/productos/image.png" alt="Mapa de ubicación">
       </div>
     </div>
   </section>
@@ -133,3 +169,5 @@
 
 </body>
 </html>
+
+<?php $conn->close(); ?>
