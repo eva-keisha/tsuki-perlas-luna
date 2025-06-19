@@ -44,6 +44,8 @@ if ($result->num_rows > 0) {
           <li><a href="catalogo.php">Colecciones</a></li>
           <li><a href="sobre_nosotros.html">Nuestra Historia</a></li>
           <li><a href="contacto.html">Contacto</a></li>
+           <li><a href="carrito_ver.php">Carrito</a></li>
+            <li><a href="wishlist_ver.php">Wishilist</a></li>
         </ul>
       </nav>
     </div>

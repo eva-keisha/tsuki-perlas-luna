@@ -60,10 +60,29 @@ $conn->close();
             <p><?php echo htmlspecialchars($producto['descripcion']); ?></p>
             <label for="cantidad">Cantidad:</label>
             <input type="number" id="cantidad" name="cantidad" value="1" min="1">
-            <button>Agregar al carrito</button>
+         <form action="carrito.php" method="POST">
+    <input type="hidden" name="id_producto" value="<?php echo $producto['id_producto']; ?>">
+    <label for="cantidad">Cantidad:</label>
+    <input type="number" id="cantidad" name="cantidad" value="1" min="1">
+    <button type="submit">Agregar al carrito</button>
+</form>
         </div>
+        <a href="wishlist.php?id_producto=<?= $producto['id_producto'] ?>">❤️ Añadir a Wishlist</a>
+
     </section>
-    
+    <h3>También te puede interesar:</h3>
+<div class="otros-productos">
+<?php
+$conn = new mysqli($servername, $username, $password, $dbname);
+$sql = "SELECT id_producto, nombre_producto, imagen FROM productos WHERE id_producto != $id_producto LIMIT 4";
+$result = $conn->query($sql);
+while ($row = $result->fetch_assoc()) {
+    echo "<a href='detalle_producto.php?id_producto={$row['id_producto']}'>";
+    echo "<img src='{$row['imagen']}' width='100'>";
+    echo "<p>{$row['nombre_producto']}</p></a>";
+}
+?>
+</div>
     <footer>
         <p>© 2025 Tsuki Joyería. Todos los derechos reservados.</p>
     </footer>
