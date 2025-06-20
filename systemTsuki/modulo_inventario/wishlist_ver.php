@@ -8,6 +8,11 @@ $password = "";
 $dbname = "tsuki_joyeria";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
+
+if (!isset($_GET['embedded'])) {
+    header("Location: index.php");
+    exit;
+}
 ?>
 
 <h1>Mi Lista de Deseos</h1>

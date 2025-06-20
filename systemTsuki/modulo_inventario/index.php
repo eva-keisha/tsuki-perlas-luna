@@ -49,6 +49,22 @@ if ($result->num_rows > 0) {
         </ul>
       </nav>
     </div>
+    <!-- Panel lateral para carrito y wishlist -->
+<div id="side-panel" class="side-panel">
+  <div class="panel-header">
+    <h2 id="panel-title">Mi Carrito</h2>
+    <button onclick="closePanel()" class="close-btn">✕</button>
+  </div>
+  <div class="panel-content" id="panel-content">
+    <p>Cargando...</p>
+  </div>
+</div>
+
+<!-- Botones flotantes -->
+<div class="floating-buttons">
+  <button onclick="loadPanel('carrito')" class="cart-btn">🛒 Carrito</button>
+  <button onclick="loadPanel('wishlist')" class="wishlist-btn">💖 Wishlist</button>
+</div>
   </header>
 
   <!-- HERO -->
@@ -168,6 +184,39 @@ if ($result->num_rows > 0) {
   <footer class="footer">
     <p>&copy; 2024 Tsuki no Umi. Todos los derechos reservados.</p>
   </footer>
+
+<script>
+function openPanel() {
+  document.getElementById("side-panel").classList.add("open");
+}
+
+function closePanel() {
+  document.getElementById("side-panel").classList.remove("open");
+}
+
+function loadPanel(type) {
+  const panelTitle = document.getElementById("panel-title");
+  const panelContent = document.getElementById("panel-content");
+
+  if (type === 'carrito') {
+    panelTitle.innerText = "Mi Carrito";
+    fetch('carrito_ver.php?embedded=1')
+      .then(res => res.text())
+      .then(html => {
+        panelContent.innerHTML = html;
+        openPanel();
+      });
+  } else if (type === 'wishlist') {
+    panelTitle.innerText = "Mi Wishlist";
+    fetch('wishlist_ver.php?embedded=1')
+      .then(res => res.text())
+      .then(html => {
+        panelContent.innerHTML = html;
+        openPanel();
+      });
+  }
+}
+</script>
 
 </body>
 </html>

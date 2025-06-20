@@ -13,7 +13,12 @@ if ($conn->connect_error) {
 }
 
 $total = 0;
+if (!isset($_GET['embedded'])) {
+    header("Location: index.php");
+    exit;
+}
 ?>
+
 
 <h1>Tu carrito</h1>
 <table>
