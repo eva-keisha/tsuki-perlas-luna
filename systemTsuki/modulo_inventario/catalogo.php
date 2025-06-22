@@ -1,4 +1,5 @@
 <?php
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -21,21 +22,54 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo - Tsuki</title>
     <link rel="stylesheet" href="../css/styles.css">
+     <link rel="stylesheet" href="../../pagina_web/css/inicio_diseño.css">
+  <link rel="stylesheet" href="../../pagina_web/css/productos.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
     <script defer src="../JS/filtrar_catalogo.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Tsuki</h1>
-        <nav>
-            <ul>
-                <li><a href="../../pagina_web/index.html">Inicio html</a></li>
-                  <li><a href="index.php">Inicio php</a></li>
-                <li><a href="catalogo.php">Catálogo</a></li>
-                <li><a href="#">Ofertas</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- HEADER -->
+<header class="header">
+  <div class="container header-container">
+    <div class="logo">
+      <img src="../../pagina_web/logo_banner/logo noche.png" alt="Logo Tsuki no Umi">
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><a href="index.php">Inicio</a></li>
+        <li><a href="catalogo.php">Colecciones</a></li>
+        <li><a href="sobre_nosotros.html">Nuestra Historia</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+     
+
+        <?php if (isset($_SESSION['cliente_id'])): ?>
+            <li><span style="color:black;">👤 <?php echo htmlspecialchars($_SESSION['cliente_nombre']); ?></span></li>
+            <li><a href="logout.php">Cerrar sesión</a></li>
+        <?php else: ?>
+            <li><a href="login.php">Inicio de sesión</a></li>
+            <li><a href="registro.php">Registrarse</a></li>
+        <?php endif; ?>
+      </ul>
+    </nav>
+
+    <!-- Botones flotantes -->
+    <div class="floating-buttons">
+      <button onclick="loadPanel('carrito')" class="cart-btn">🛒 Carrito</button>
+      <button onclick="loadPanel('wishlist')" class="wishlist-btn">💖 Wishlist</button>
+    </div>
+  </div>
+
+  <!-- Panel lateral para carrito y wishlist -->
+  <div id="side-panel" class="side-panel">
+    <div class="panel-header">
+      <h2 id="panel-title">Mi Carrito</h2>
+      <button onclick="closePanel()" class="close-btn">✕</button>
+    </div>
+    <div class="panel-content" id="panel-content">
+      <p>Cargando...</p>
+    </div>
+  </div>
+</header>
     
     <section class="catalogo">
         <aside class="filtros">

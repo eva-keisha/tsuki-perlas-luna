@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -9,7 +11,6 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// Consulta para obtener 3 productos representativos
 $sql = "SELECT nombre_producto, imagen FROM productos LIMIT 3";
 $result = $conn->query($sql);
 $colecciones = [];
@@ -27,45 +28,53 @@ if ($result->num_rows > 0) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tsuki no Umi - Joyería de Perlas</title>
   <link rel="stylesheet" href="../../pagina_web/css/inicio_diseño.css">
-     <link rel="stylesheet" href="../../pagina_web/css/productos.css">
+  <link rel="stylesheet" href="../../pagina_web/css/productos.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="container header-container">
-      <div class="logo">
-        <img src="../../pagina_web/logo_banner/logo noche.png" alt="Logo Tsuki no Umi">
-      </div>
-      <nav class="nav">
-        <ul>
-          <li><a href="index.php">Inicio</a></li>
-          <li><a href="catalogo.php">Colecciones</a></li>
-          <li><a href="sobre_nosotros.html">Nuestra Historia</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-           <li><a href="carrito_ver.php">Carrito</a></li>
-            <li><a href="wishlist_ver.php">Wishilist</a></li>
-        </ul>
-      </nav>
+<!-- HEADER -->
+<header class="header">
+  <div class="container header-container">
+    <div class="logo">
+      <img src="../../pagina_web/logo_banner/logo noche.png" alt="Logo Tsuki no Umi">
     </div>
-    <!-- Panel lateral para carrito y wishlist -->
-<div id="side-panel" class="side-panel">
-  <div class="panel-header">
-    <h2 id="panel-title">Mi Carrito</h2>
-    <button onclick="closePanel()" class="close-btn">✕</button>
-  </div>
-  <div class="panel-content" id="panel-content">
-    <p>Cargando...</p>
-  </div>
-</div>
+    <nav class="nav">
+      <ul>
+        <li><a href="index.php">Inicio</a></li>
+        <li><a href="catalogo.php">Colecciones</a></li>
+        <li><a href="sobre_nosotros.html">Nuestra Historia</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+       
 
-<!-- Botones flotantes -->
-<div class="floating-buttons">
-  <button onclick="loadPanel('carrito')" class="cart-btn">🛒 Carrito</button>
-  <button onclick="loadPanel('wishlist')" class="wishlist-btn">💖 Wishlist</button>
-</div>
-  </header>
+        <?php if (isset($_SESSION['cliente_id'])): ?>
+            <li><span style="color:black;">👤 <?php echo htmlspecialchars($_SESSION['cliente_nombre']); ?></span></li>
+            <li><a href="logout.php">Cerrar sesión</a></li>
+        <?php else: ?>
+            <li><a href="login.php">Inicio de sesión</a></li>
+            <li><a href="registro.php">Registrarse</a></li>
+        <?php endif; ?>
+      </ul>
+    </nav>
+
+    <!-- Botones flotantes -->
+    <div class="floating-buttons">
+      <button onclick="loadPanel('carrito')" class="cart-btn">🛒 Carrito</button>
+      <button onclick="loadPanel('wishlist')" class="wishlist-btn">💖 Wishlist</button>
+    </div>
+  </div>
+
+  <!-- Panel lateral para carrito y wishlist -->
+  <div id="side-panel" class="side-panel">
+    <div class="panel-header">
+      <h2 id="panel-title">Mi Carrito</h2>
+      <button onclick="closePanel()" class="close-btn">✕</button>
+    </div>
+    <div class="panel-content" id="panel-content">
+      <p>Cargando...</p>
+    </div>
+  </div>
+</header>
 
   <!-- HERO -->
   <section class="hero">
@@ -73,7 +82,7 @@ if ($result->num_rows > 0) {
       <div class="text">
         <h1>Perlas con Elegancia Atemporal</h1>
         <p>Tsuki no Umi combina la mística lunar con la sofisticación moderna.</p>
-        <a href="productos.html" class="btn">Descubre la colección</a>
+        <a href="catalogo.php" class="btn">Descubre la colección</a>
       </div>
       <div class="image">
         <img src="../../pagina_web/logo_banner/banner noche.png" alt="Banner de perlas">
